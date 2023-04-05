@@ -2,9 +2,8 @@ import "./widget.scss";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
-
+import { QuestionCircleOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 const Widget = ({ type }) => {
   let data;
 
@@ -18,6 +17,7 @@ const Widget = ({ type }) => {
         title: "Học sinh",
         isMoney: false,
         link: "Xem danh sách học sinh",
+        to: "/users",
         icon: (
           <PersonOutlinedIcon
             className="icon"
@@ -34,8 +34,9 @@ const Widget = ({ type }) => {
         title: "Giáo viên",
         isMoney: false,
         link: "Xem danh sách giáo viên",
+        to: "/teachers",
         icon: (
-          <ShoppingCartOutlinedIcon
+          <PersonOutlinedIcon
             className="icon"
             style={{
               backgroundColor: "rgba(218, 165, 32, 0.2)",
@@ -49,9 +50,10 @@ const Widget = ({ type }) => {
       data = {
         title: "Câu hỏi",
         isMoney: true,
-        link: "Xem danh sách câu hỏi",
+        link: "Danh sách câu hỏi",
+        to: "/approveQuestions",
         icon: (
-          <MonetizationOnOutlinedIcon
+          <QuestionCircleOutlined
             className="icon"
             style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
           />
@@ -63,6 +65,7 @@ const Widget = ({ type }) => {
         title: "Yêu cầu thanh toán",
         isMoney: true,
         link: "Xem yêu cầu thanh toán",
+        to: "/requestPayment",
         icon: (
           <AccountBalanceWalletOutlinedIcon
             className="icon"
@@ -82,10 +85,9 @@ const Widget = ({ type }) => {
     <div className="widget">
       <div className="left">
         <span className="title">{data.title}</span>
-        <span className="counter">
-          {data.isMoney && "$"} {amount}
-        </span>
-        <span className="link">{data.link}</span>
+        <Link style={{ textDecoration: "none" }} to={data.to}>
+          {data.link}
+        </Link>
       </div>
       <div className="right">
         <div className="percentage positive">

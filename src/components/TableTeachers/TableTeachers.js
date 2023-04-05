@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import { Table, Space, Tag } from "antd";
-import { BASE_URL } from "../../constant/constant";
 import { Link } from "react-router-dom";
 import "./tableTeachers.scss";
 
-export default function TableTeachers() {
+export default function TableTeachers({ teachers, loading }) {
   const columns = [
     {
       title: "Id",
@@ -36,6 +34,7 @@ export default function TableTeachers() {
       title: "Môn học",
       dataIndex: "subjects",
       key: "subjects",
+      render: (_, record) => <div>{record.subjects.join(", ")}</div>,
     },
     {
       title: "Point",
@@ -43,18 +42,18 @@ export default function TableTeachers() {
       key: "point",
     },
     {
-      title: "Active",
+      title: "Hoạt động",
       dataIndex: "active",
       key: "active",
       render: (_, record) => (
         <div>
           {record.active ? (
             <Tag color="green" key={record.id}>
-              True
+              Đúng
             </Tag>
           ) : (
             <Tag color="red" key={record.id}>
-              False
+              Sai
             </Tag>
           )}
         </div>
@@ -71,49 +70,31 @@ export default function TableTeachers() {
           >
             <div className="viewButton">Chi tiết</div>
           </Link>
-          <a>Vô hiệu hóa</a>
+          <a style={{ color: "red" }}>Vô hiệu hóa</a>
         </Space>
       ),
     },
   ];
 
-  const [teachers, setTeachers] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
-
-  const getTeachers = () => {
-    setLoading(true);
-    const config = {
-      headers: {
-        Authorization:
-          "eyJhbGciOiJIUzUxMiJ9.eyJJRCI6IjYzZjk4YmYwY2Q3MzAzMzMxMGQ0NjBjOCIsInVzZXJfbmFtZSI6ImN1b25nIiwidHlwZSI6IjEiLCJlbWFpbCI6ImNAZ20ubSIsInJvbGUiOiJzdHVkZW50IiwiZGF0ZV9vZl9iaXJ0aCI6IjAyLTAzLTIwMDEiLCJwaG9uZV9udW1iZXIiOiIwOTY3NjEwNjk4IiwiZ2VuZGVyIjoxLCJzdGF0dXMiOjAsInJlYWxfbmFtZSI6ImN1b25nIiwiaWF0IjoxNjc3Mjk4NTg5fQ.-KeBH1u-xtLoDoISDHW_3fFj0LdC4pZUHok3W4SGECMcMyU0Laiyc3mh73pbu92dM6zp730_n6kIuistRORpVQ",
-      },
-    };
-    axios
-      .get(
-        `${BASE_URL}/ums/getTeachers?page=${page - 1}&size=10&sort=time_login`,
-        config
-      )
-      .then((res) => {
-        setTeachers(res.data.object);
-        setLoading(false);
-      });
-  };
-
-  useEffect(() => {
-    getTeachers();
-  }, [page]);
-
   return (
     <div>
-      {!teachers || teachers.length === 0 ? (
+      {!teachers ? (
         <div></div>
+      ) : teachers.length === 0 ? (
+        <div
+          style={{
+            textAlign: "center",
+            margin: 100,
+          }}
+        >
+          Không có giáo viên nào thỏa mãn
+        </div>
       ) : (
         <Table
           dataSource={teachers}
           columns={columns}
           // pagination={{ position: ["topRight", "bottomRight"] }}
-          pagination={10}
+          pagination={{ pageSize: 10 }}
           loading={loading}
         />
       )}

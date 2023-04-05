@@ -14,11 +14,12 @@ import {
   Checkbox,
   Upload,
 } from "antd";
+import { classes, subjects } from "../../constant/constant";
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
 
-export default function SearchForm() {
+export default function SearchForm({ setDataSearch }) {
   return (
     <>
       <Form
@@ -26,44 +27,56 @@ export default function SearchForm() {
         wrapperCol={{ span: 14 }}
         layout="horizontal"
         style={{ maxWidth: 600 }}
+        onFinish={({ name, grade, subject, gender }) => {
+          const dataSearch = {
+            name: name,
+            grade: grade,
+            subject: subject,
+            gender: gender,
+          };
+          setDataSearch(dataSearch);
+        }}
       >
-        <Form.Item label="Tìm theo tên">
-          <Input />
-        </Form.Item>
+        <div>
+          <Form.Item label="Tìm theo tên" name="name">
+            <Input />
+          </Form.Item>
 
-        <Form.Item label="Lớp">
-          <Select>
-            <Select.Option value="1">1</Select.Option>
-            <Select.Option value="2">2</Select.Option>
-            <Select.Option value="3">3</Select.Option>
-            <Select.Option value="4">4</Select.Option>
-            <Select.Option value="5">5</Select.Option>
-            <Select.Option value="6">6</Select.Option>
-            <Select.Option value="7">7</Select.Option>
-            <Select.Option value="8">8</Select.Option>
-            <Select.Option value="9">9</Select.Option>
-            <Select.Option value="10">10</Select.Option>
-            <Select.Option value="11">11</Select.Option>
-            <Select.Option value="12">12</Select.Option>
-          </Select>
-        </Form.Item>
+          <Form.Item label="Lớp" name="grade">
+            <Select>
+              {classes.map((item, index) => {
+                return (
+                  <Select.Option key={item.value} value={item.value}>
+                    {item.label}
+                  </Select.Option>
+                );
+              })}
+            </Select>
+          </Form.Item>
+        </div>
 
-        <Form.Item label="Môn học">
-          <Select>
-            <Select.Option value="1">1</Select.Option>
-            <Select.Option value="2">2</Select.Option>
-            <Select.Option value="3">3</Select.Option>
-            <Select.Option value="4">4</Select.Option>
-            <Select.Option value="5">5</Select.Option>
-            <Select.Option value="6">6</Select.Option>
-            <Select.Option value="7">7</Select.Option>
-            <Select.Option value="8">8</Select.Option>
-            <Select.Option value="9">9</Select.Option>
-          </Select>
-        </Form.Item>
+        <div>
+          <Form.Item label="Môn học" name="subject">
+            <Select>
+              {subjects.map((item, index) => {
+                return (
+                  <Select.Option key={item.id} value={item.name}>
+                    {item.name}
+                  </Select.Option>
+                );
+              })}
+            </Select>
+          </Form.Item>
+          <Form.Item label="Giới tính" name="gender">
+            <Select>
+              <Select.Option value={1}>Nam</Select.Option>
+              <Select.Option value={2}>Nữ</Select.Option>
+            </Select>
+          </Form.Item>
+        </div>
 
         <Form.Item>
-          <Button>Tìm kiếm</Button>
+          <Button htmlType="submit">Tìm kiếm</Button>
         </Form.Item>
       </Form>
     </>

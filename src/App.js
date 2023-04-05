@@ -11,6 +11,7 @@ import { DarkModeContext } from "./context/darkModeContext";
 import ListTeachers from "./pages/ListTeachers/ListTeachers";
 import TeacherDetail from "./pages/TeacherDetail/TeacherDetail";
 import ListQuestions from "./pages/ListQuestions/ListQuestions";
+import VerifyTeachers from "./pages/verifyTeacher";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -32,6 +33,9 @@ function App() {
             </Route>
             <Route path="questions">
               <Route index element={<ListQuestions />} />
+            </Route>
+            <Route path="verify">
+              <Route path="teachers" element={<VerifyTeachers />} />
             </Route>
           </Route>
         </Routes>
