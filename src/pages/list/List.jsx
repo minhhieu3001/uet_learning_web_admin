@@ -26,7 +26,7 @@ const List = () => {
     };
     axios
       .get(
-        `${BASE_URL}/ums/getStudents/getStudentsByConditions?page=0&size=100&searchByName=${
+        `${BASE_URL}/admin/student/getStudentsByConditions?page=0&size=100&searchByName=${
           !dataSearch.name ? "" : dataSearch.name
         }&searchBySubjects=${
           !dataSearch.subject ? "" : dataSearch.subject

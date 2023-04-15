@@ -1,7 +1,7 @@
 import "./single.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import List from "../../components/table/Table";
+import ListTransaction from "../../components/ListTransaction/Table";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../constant/constant";
@@ -93,7 +93,7 @@ const Single = () => {
         </div>
         <div className="bottom">
           <h1 className="title">Lịch sử thanh toán</h1>
-          <List />
+          <ListTransaction />
         </div>
       </div>
     </div>

@@ -1,23 +1,6 @@
 import React from "react";
-import { PlusOutlined } from "@ant-design/icons";
-import {
-  Form,
-  Input,
-  Button,
-  Radio,
-  Select,
-  Cascader,
-  DatePicker,
-  InputNumber,
-  TreeSelect,
-  Switch,
-  Checkbox,
-  Upload,
-} from "antd";
+import { Form, Input, Button, Select, DatePicker } from "antd";
 import { classes, subjects } from "../../constant/constant";
-
-const { RangePicker } = DatePicker;
-const { TextArea } = Input;
 
 export default function SearchForm({ setDataSearch }) {
   return (

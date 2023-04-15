@@ -22,13 +22,12 @@ export default function ListTeachers() {
     setLoading(true);
     const config = {
       headers: {
-        Authorization:
-          "eyJhbGciOiJIUzUxMiJ9.eyJJRCI6IjYzZjlhOWQwYTNiNDAxNzhjZGM5ZDAwMiIsInR5cGUiOiIxIiwiZW1haWwiOiJoaWV1MUBnbWFpbC5jb20iLCJyb2xlIjoic3R1ZGVudCIsImRhdGVfb2ZfYmlydGgiOiIyOC0wMi0yMDA2IiwicGhvbmVfbnVtYmVyIjoiMDgxMzQ4MDI0OCIsImdlbmRlciI6MSwic3RhdHVzIjowLCJyZWFsX25hbWUiOiJCw7lpIE1pbmggSGnhur91IiwiYXZhdGFyX3BhdGgiOiJodHRwczovL2Jvb2tzdG9yZWltYWdlcy5zMy5hbWF6b25hd3MuY29tL2F2YXRhci9ybl9pbWFnZV9waWNrZXJfbGliX3RlbXBfYzNiMzZmNDctZTRkMy00YWNmLWE4YTItY2NkNDQwNmQyYjFiLmpwZyIsInRva2VuX2RldmljZSI6ImRROVN2Yk5xU1ppUnl1dTFWTnNZV2E6QVBBOTFiSF85VGYwOTJnSy1oM0tteGJIdFdTMk5MNnZlMVpHMElhNG8taUhFS1VTcXF3eXM1QXA0RkJUeEFxQXFTZ1hQeng5Wm1ENTQyeXRCVUhLSDJOblVicmg4UldFTFB6MmZMWXU2ZVI3OFBIZ1g0Z2tMcWUxVkdQbWRkaG9ucDloalQ4UVNnb2kiLCJpYXQiOjE2Nzk2NTM0NTV9.axeX4Pv0GDO6iRzKYGk5wiylCQHqeluVHsx7Js89wAFb-RHlCSOCkUhcH4T09LKW5G974sNu4dJRjfRqGKRSlw",
+        Authorization: localStorage.getItem("token"),
       },
     };
     axios
       .get(
-        `${BASE_URL}/ums/getTeachers/getTeacher?page=0&size=100&tab=3&searchByName=${
+        `${BASE_URL}/admin/teacher/getTeacher?page=0&size=100&tab=3&searchByName=${
           !dataSearch.name ? "" : dataSearch.name
         }&searchBySubjects=${
           !dataSearch.subject ? "" : dataSearch.subject
