@@ -8,17 +8,15 @@ export default function Loading() {
       style={{
         width: "100%",
         height: "100%",
-      }}
-    >
+      }}>
       <Space
         style={{
           width: "100%",
           height: "100%",
           marginTop: "45vh",
           marginLeft: "45vw",
-        }}
-      >
-        <Spin size="large">
+        }}>
+        <Spin size="large" tip="Đang tải...">
           <div className="content" />
         </Spin>
       </Space>
