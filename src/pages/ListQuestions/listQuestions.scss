@@ -1,0 +1,15 @@
+.listQuestions {
+  display: flex;
+  width: 100%;
+
+  .tableQuestionsName {
+    font-size: 30px;
+    font-weight: 600;
+    margin: 20px;
+    text-align: center;
+  }
+
+  .listQuestionsContainer {
+    flex: 6;
+  }
+}
