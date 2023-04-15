@@ -65,7 +65,7 @@ const Sidebar = () => {
               <span>Xác minh giáo viên</span>
             </li>
           </Link>
-          <Link to="/approveQuestions" style={{ textDecoration: "none" }}>
+          <Link to="/questions" style={{ textDecoration: "none" }}>
             <li>
               <Check className="icon" />
               <span>Duyệt câu hỏi</span>

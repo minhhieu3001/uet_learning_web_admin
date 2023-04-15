@@ -1,3 +1,18 @@
-.login{
-    
+.login {
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-image: url("https://staging.d2ar7agitimnk0.amplifyapp.com/images/Login-bg.png?fbclid=IwAR2fSMGpaMGR44CHbaty714qWI0JSIMNnSoRXRFVslFuSTm0LiDUllwrsgc");
+}
+.login .loginForm {
+  width: 40% !important;
+  //   margin: auto;
+  padding: 40px;
+  border: 1px solid rgb(32, 32, 59);
+}
+.loginButton {
+  margin: auto;
+  width: 108px;
 }
