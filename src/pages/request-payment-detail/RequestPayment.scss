@@ -1,0 +1,60 @@
+.request {
+  display: flex;
+  width: 100%;
+
+  .detailRequestPaymentName {
+    font-size: 30px;
+    font-weight: 600;
+    margin: 20px;
+    text-align: center;
+  }
+  .detailRequestPayment {
+    flex: 6;
+    .buttons {
+      width: 30%;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      margin-top: 50px;
+    }
+  }
+  .detailRequestPaymentContainer {
+    padding: 0 20%;
+
+    .detailRequestPaymentContent {
+      .ant-upload-list-item-actions {
+        display: none;
+      }
+      .ant-input {
+        width: 400px;
+      }
+      .ant-form-item-label {
+        background-color: #cad5f3be;
+        margin-right: 10px;
+        padding: 0 10px;
+        text-align: center;
+        max-height: 32px;
+        min-width: 150px;
+      }
+      .ant-form-item-label
+        > label.ant-form-item-required:not(
+          .ant-form-item-required-mark-optional
+        ):before {
+        content: "";
+      }
+      .ant-form-item-label
+        > label.ant-form-item-required:not(
+          .ant-form-item-required-mark-optional
+        ):after {
+        display: inline-block;
+        margin-right: 1px;
+        color: #ff4d4f;
+        font-size: 14px;
+        font-family: SimSun, sans-serif;
+        line-height: 1;
+        content: "*";
+      }
+    }
+  }
+}

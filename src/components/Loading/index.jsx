@@ -16,7 +16,7 @@ export default function Loading() {
           marginTop: "45vh",
           marginLeft: "45vw",
         }}>
-        <Spin size="large" tip="Đang tải...">
+        <Spin size="large">
           <div className="content" />
         </Spin>
       </Space>

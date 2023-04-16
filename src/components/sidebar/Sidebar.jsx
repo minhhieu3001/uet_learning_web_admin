@@ -53,7 +53,7 @@ const Sidebar = () => {
           <p className="title" style={{ fontSize: 20, color: "black" }}>
             Phê duyệt
           </p>
-          <Link to="/handlePayment" style={{ textDecoration: "none" }}>
+          <Link to="/requestPayments" style={{ textDecoration: "none" }}>
             <li>
               <Check className="icon" />
               <span>Xử lí thanh toán</span>

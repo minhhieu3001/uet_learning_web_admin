@@ -1,43 +1,43 @@
 import React, { useEffect, useState } from "react";
-import "./listQuestions.scss";
+import "./RequestPayment.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Loading from "../../components/Loading";
 import axios from "axios";
 import { BASE_URL } from "../../constant/constant";
-import TableQuestions from "../../components/TableQuestions/TableQuestions";
+import TableRequestPayments from "../../components/table-request-payment/TableRequestPayments";
 
-export default function ListQuestions() {
-  const dummyQuestions = [
+export default function ListRequestPayments() {
+  const dummyPayments = [
     {
       id: "1",
-      content: "Câu hỏi 1",
-      subjects: "Toán",
-      course: "9",
+      bank: "BIDV",
+      author: "Bui Minh Hieu",
+      points: "10000",
     },
     {
       id: "2",
-      content: "Câu hỏi 2",
-      subjects: "Toán",
-      course: "9",
+      bank: "BIDV",
+      author: "Bui Minh Hieu",
+      points: "10000",
     },
     {
       id: "3",
-      content: "Câu hỏi 3",
-      subjects: "Toán",
-      course: "9",
+      bank: "BIDV",
+      author: "Bui Minh Hieu",
+      points: "10000",
     },
     {
       id: "4",
-      content: "Câu hỏi 4",
-      subjects: "Toán",
-      course: "9",
+      bank: "BIDV",
+      author: "Bui Minh Hieu",
+      points: "10000",
     },
     {
       id: "5",
-      content: "Câu hỏi 5",
-      subjects: "Toán",
-      course: "9",
+      bank: "BIDV",
+      author: "Bui Minh Hieu",
+      points: "10000",
     },
   ];
   const [questions, setQuestions] = useState([]);
@@ -61,13 +61,15 @@ export default function ListQuestions() {
   }, []);
   return (
     <div>
-      <div className="listQuestions">
+      <div className="listRequestPayments">
         <Sidebar />
-        <div className="listQuestionsContainer">
+        <div className="listRequestPaymentsContainer">
           <Navbar />
-          <p className="tableQuestionsName">Danh sách câu hỏi</p>
-          <div className="tableQuestionsContainer">
-            <TableQuestions loading={loading} questions={dummyQuestions} />
+          <p className="tableRequestPaymentsName">
+            Danh sách yêu cầu thanh toán
+          </p>
+          <div className="tableRequestPaymentsContainer">
+            <TableRequestPayments loading={loading} questions={dummyPayments} />
           </div>
         </div>
       </div>

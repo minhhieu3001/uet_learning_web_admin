@@ -51,7 +51,7 @@ const Widget = ({ type }) => {
         title: "Câu hỏi",
         isMoney: true,
         link: "Danh sách câu hỏi",
-        to: "/approveQuestions",
+        to: "/questions",
         icon: (
           <QuestionCircleOutlined
             className="icon"
@@ -65,7 +65,7 @@ const Widget = ({ type }) => {
         title: "Yêu cầu thanh toán",
         isMoney: true,
         link: "Xem yêu cầu thanh toán",
-        to: "/requestPayment",
+        to: "/requestPayments",
         icon: (
           <AccountBalanceWalletOutlinedIcon
             className="icon"
