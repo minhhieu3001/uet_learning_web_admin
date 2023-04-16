@@ -22,11 +22,10 @@ const Single = () => {
     };
     axios
       .get(
-        `${BASE_URL}/ums/session/student/getStudentById?studentId=${params.userId}`,
+        `${BASE_URL}/admin/student/studentId?studentId=${params.userId}`,
         config
       )
       .then((res) => {
-        console.log(res);
         if (res.data.code === 0) {
           setUser(res.data.object);
         }
@@ -48,6 +47,7 @@ const Single = () => {
         <div className="top">
           <div className="left">
             <div className="editButton">Chỉnh sửa</div>
+            <div className="deactiveButton">Vô hiệu hóa</div>
             <h1 className="title">Thông tin cá nhân</h1>
             <div className="item">
               {user.avaPath ? (

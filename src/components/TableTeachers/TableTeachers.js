@@ -65,7 +65,7 @@ export default function TableTeachers({ teachers, loading }) {
       render: (_, record) => (
         <Space size="middle">
           <Link
-            to={`/teachers/${record.id}`}
+            to={`/teachers/detail/${record.id}`}
             style={{ textDecoration: "none" }}
           >
             <div className="viewButton">Chi tiết</div>
@@ -77,27 +77,12 @@ export default function TableTeachers({ teachers, loading }) {
   ];
 
   return (
-    <div>
-      {!teachers ? (
-        <div></div>
-      ) : teachers.length === 0 ? (
-        <div
-          style={{
-            textAlign: "center",
-            margin: 100,
-          }}
-        >
-          Không có giáo viên nào thỏa mãn
-        </div>
-      ) : (
-        <Table
-          dataSource={teachers}
-          columns={columns}
-          // pagination={{ position: ["topRight", "bottomRight"] }}
-          pagination={{ pageSize: 10 }}
-          loading={loading}
-        />
-      )}
-    </div>
+    <Table
+      dataSource={teachers}
+      columns={columns}
+      // pagination={{ position: ["topRight", "bottomRight"] }}
+      pagination={{ pageSize: 10 }}
+      loading={loading}
+    />
   );
 }

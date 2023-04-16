@@ -67,34 +67,19 @@ export default function TableStudents({ students, loading }) {
           <Link to={`/users/${record.id}`} style={{ textDecoration: "none" }}>
             <div className="viewButton">Chi tiết</div>
           </Link>
-          <a style={{ color: "red" }}>Vô hiệu hóa</a>
+          <div style={{ color: "red" }}>Vô hiệu hóa</div>
         </Space>
       ),
     },
   ];
 
   return (
-    <div>
-      {!students ? (
-        <div></div>
-      ) : students.length === 0 ? (
-        <div
-          style={{
-            textAlign: "center",
-            margin: 100,
-          }}
-        >
-          Không có học sinh nào thỏa mãn
-        </div>
-      ) : (
-        <Table
-          dataSource={students}
-          columns={columns}
-          // pagination={{ position: ["topRight", "bottomRight"] }}
-          pagination={{ pageSize: 10 }}
-          loading={loading}
-        />
-      )}
-    </div>
+    <Table
+      dataSource={students}
+      columns={columns}
+      // pagination={{ position: ["topRight", "bottomRight"] }}
+      pagination={{ pageSize: 10 }}
+      loading={loading}
+    />
   );
 }

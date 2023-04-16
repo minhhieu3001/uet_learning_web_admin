@@ -32,7 +32,7 @@ function App() {
             </Route>
             <Route path="teachers">
               <Route index element={<ListTeachers />} />
-              <Route path=":teacherId" element={<TeacherDetail />} />
+              <Route path=":detail/:teacherId" element={<TeacherDetail />} />
             </Route>
             <Route path="questions">
               <Route index element={<ListQuestions />} />
