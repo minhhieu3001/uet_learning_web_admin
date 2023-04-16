@@ -12,6 +12,9 @@ import ListTeachers from "./pages/ListTeachers/ListTeachers";
 import TeacherDetail from "./pages/TeacherDetail/TeacherDetail";
 import ListQuestions from "./pages/ListQuestions/ListQuestions";
 import VerifyTeachers from "./pages/verifyTeacher";
+import QuestionDetail from "./pages/question-detail/QuestionDetail";
+import ListRequestPayments from "./pages/request-payment/RequestPayment";
+import RequestPaymentDetail from "./pages/request-payment-detail/RequestPaymentDetail";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -33,9 +36,17 @@ function App() {
             </Route>
             <Route path="questions">
               <Route index element={<ListQuestions />} />
+              <Route path=":questionId" element={<QuestionDetail />} />
             </Route>
             <Route path="verify">
               <Route path="teachers" element={<VerifyTeachers />} />
+            </Route>
+            <Route path="requestPayments">
+              <Route index element={<ListRequestPayments />} />
+              <Route
+                path=":requestPaymentId"
+                element={<RequestPaymentDetail />}
+              />
             </Route>
           </Route>
         </Routes>

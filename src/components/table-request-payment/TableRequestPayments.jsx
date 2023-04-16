@@ -1,9 +1,9 @@
 import React from "react";
 import { Table, Space, Tag } from "antd";
 import { Link } from "react-router-dom";
-import "./tableQuestions.scss";
+// import "./tableQuestions.scss";
 
-export default function TableQuestions({ questions, loading }) {
+export default function TableRequestPayments({ questions, loading }) {
   const columns = [
     {
       title: "Id",
@@ -13,25 +13,32 @@ export default function TableQuestions({ questions, loading }) {
       align: "center",
     },
     {
-      title: "Nội dung",
-      dataIndex: "content",
-      key: "content",
+      title: "Ngân hàng",
+      dataIndex: "bank",
+      key: "bank",
       align: "center",
     },
     {
-      title: "Môn học",
-      dataIndex: "subjects",
-      key: "subjects",
-      render: (_, record) => <div>{record.subjects}</div>,
+      title: "Giáo viên",
+      dataIndex: "author",
+      key: "author",
       width: 240,
       align: "center",
     },
     {
-      title: "Lớp",
-      dataIndex: "course",
-      key: "course",
+      title: "Số điểm",
+      dataIndex: "points",
+      key: "points",
       width: 120,
       align: "center",
+    },
+    {
+      title: "Thành tiền",
+      dataIndex: "money",
+      key: "money",
+      width: 120,
+      align: "center",
+      render: (_, record) => <div>{`${record.points}0 VND`}</div>,
     },
     {
       title: "Hành động",
@@ -41,7 +48,7 @@ export default function TableQuestions({ questions, loading }) {
       render: (_, record) => (
         <Space size="middle">
           <Link
-            to={`/questions/${record.id}`}
+            to={`/requestPayments/${record.id}`}
             style={{ textDecoration: "none" }}>
             <div className="viewButton">Chi tiết</div>
           </Link>

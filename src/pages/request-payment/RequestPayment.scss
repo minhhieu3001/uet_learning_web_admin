@@ -1,18 +1,18 @@
-.listQuestions {
+.listRequestPayments {
   display: flex;
   width: 100%;
 
-  .tableQuestionsName {
+  .tableRequestPaymentsName {
     font-size: 30px;
     font-weight: 600;
     margin: 20px;
     text-align: center;
   }
 
-  .listQuestionsContainer {
+  .listRequestPaymentsContainer {
     flex: 6;
   }
-  .tableQuestionsContainer {
+  .tableRequestPaymentsContainer {
     padding: 0 20px;
     .ant-pagination {
       align-items: center;
