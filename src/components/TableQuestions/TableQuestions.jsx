@@ -20,9 +20,9 @@ export default function TableQuestions({ questions, loading }) {
     },
     {
       title: "Môn học",
-      dataIndex: "subjects",
-      key: "subjects",
-      render: (_, record) => <div>{record.subjects}</div>,
+      dataIndex: "subject",
+      key: "subject",
+      render: (_, record) => <div>{record.subject}</div>,
       width: 240,
       align: "center",
     },
@@ -42,7 +42,8 @@ export default function TableQuestions({ questions, loading }) {
         <Space size="middle">
           <Link
             to={`/questions/${record.id}`}
-            style={{ textDecoration: "none" }}>
+            style={{ textDecoration: "none" }}
+          >
             <div className="viewButton">Chi tiết</div>
           </Link>
         </Space>

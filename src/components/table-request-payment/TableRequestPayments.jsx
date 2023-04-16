@@ -3,7 +3,7 @@ import { Table, Space, Tag } from "antd";
 import { Link } from "react-router-dom";
 // import "./tableQuestions.scss";
 
-export default function TableRequestPayments({ questions, loading }) {
+export default function TableRequestPayments({ data, loading }) {
   const columns = [
     {
       title: "Id",
@@ -26,13 +26,6 @@ export default function TableRequestPayments({ questions, loading }) {
       align: "center",
     },
     {
-      title: "Số điểm",
-      dataIndex: "points",
-      key: "points",
-      width: 120,
-      align: "center",
-    },
-    {
       title: "Thành tiền",
       dataIndex: "money",
       key: "money",
@@ -49,7 +42,8 @@ export default function TableRequestPayments({ questions, loading }) {
         <Space size="middle">
           <Link
             to={`/requestPayments/${record.id}`}
-            style={{ textDecoration: "none" }}>
+            style={{ textDecoration: "none" }}
+          >
             <div className="viewButton">Chi tiết</div>
           </Link>
         </Space>
@@ -60,9 +54,8 @@ export default function TableRequestPayments({ questions, loading }) {
   return (
     <Table
       bordered
-      dataSource={questions}
+      dataSource={data}
       columns={columns}
-      // pagination={{ position: ["topRight", "bottomRight"] }}
       pagination={{ pageSize: 10 }}
       loading={loading}
     />

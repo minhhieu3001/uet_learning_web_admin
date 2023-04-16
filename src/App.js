@@ -2,9 +2,7 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import List from "./pages/list/List";
 import Single from "./pages/single/Single";
-import New from "./pages/new/New";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
@@ -15,6 +13,7 @@ import VerifyTeachers from "./pages/verifyTeacher";
 import QuestionDetail from "./pages/question-detail/QuestionDetail";
 import ListRequestPayments from "./pages/request-payment/RequestPayment";
 import RequestPaymentDetail from "./pages/request-payment-detail/RequestPaymentDetail";
+import ListPayment from "./pages/list-payment/ListPayment";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -33,6 +32,9 @@ function App() {
             <Route path="teachers">
               <Route index element={<ListTeachers />} />
               <Route path=":detail/:teacherId" element={<TeacherDetail />} />
+            </Route>
+            <Route path="payments">
+              <Route index element={<ListPayment />} />
             </Route>
             <Route path="questions">
               <Route index element={<ListQuestions />} />

@@ -8,38 +8,6 @@ import { BASE_URL } from "../../constant/constant";
 import TableQuestions from "../../components/TableQuestions/TableQuestions";
 
 export default function ListQuestions() {
-  const dummyQuestions = [
-    {
-      id: "1",
-      content: "Câu hỏi 1",
-      subjects: "Toán",
-      course: "9",
-    },
-    {
-      id: "2",
-      content: "Câu hỏi 2",
-      subjects: "Toán",
-      course: "9",
-    },
-    {
-      id: "3",
-      content: "Câu hỏi 3",
-      subjects: "Toán",
-      course: "9",
-    },
-    {
-      id: "4",
-      content: "Câu hỏi 4",
-      subjects: "Toán",
-      course: "9",
-    },
-    {
-      id: "5",
-      content: "Câu hỏi 5",
-      subjects: "Toán",
-      course: "9",
-    },
-  ];
   const [questions, setQuestions] = useState([]);
   const [loading, setLoading] = useState(false);
   const getQuestions = async () => {
@@ -67,7 +35,7 @@ export default function ListQuestions() {
           <Navbar />
           <p className="tableQuestionsName">Danh sách câu hỏi</p>
           <div className="tableQuestionsContainer">
-            <TableQuestions loading={loading} questions={dummyQuestions} />
+            <TableQuestions loading={loading} questions={questions} />
           </div>
         </div>
       </div>

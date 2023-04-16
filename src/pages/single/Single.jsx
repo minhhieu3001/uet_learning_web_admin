@@ -13,6 +13,7 @@ import { Avatar } from "antd";
 const Single = () => {
   const params = useParams();
   const [user, setUser] = useState(null);
+  const [transections, setTransections] = useState(null);
 
   const getUser = () => {
     const config = {
@@ -32,9 +33,27 @@ const Single = () => {
       });
   };
 
+  const getTransection = () => {
+    const config = {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    };
+    axios
+      .get(
+        `${BASE_URL}/admin/studentPayment/getByStudentId?studentID=${params.userId}&page=0&size=100`,
+        config
+      )
+      .then((res) => {
+        if (res.data.code === 0) {
+          setTransections(res.data.object.studentPaymentPointResponseList);
+        }
+      });
+  };
+
   useEffect(() => {
     getUser();
-    console.log(params);
+    getTransection();
   }, []);
 
   return !user ? (
@@ -93,7 +112,7 @@ const Single = () => {
         </div>
         <div className="bottom">
           <h1 className="title">Lịch sử thanh toán</h1>
-          <ListTransaction />
+          <ListTransaction rows={transections} />
         </div>
       </div>
     </div>

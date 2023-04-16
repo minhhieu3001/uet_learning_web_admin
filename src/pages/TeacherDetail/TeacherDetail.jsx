@@ -15,6 +15,7 @@ export default function TeacherDetail() {
   const navigate = useNavigate();
 
   const [teacher, setTeacher] = useState(null);
+  const [transections, setTransections] = useState(null);
 
   const getTeacher = () => {
     const config = {
@@ -31,6 +32,24 @@ export default function TeacherDetail() {
         console.log(res.data.object);
         if (res.data.code === 0) {
           setTeacher(res.data.object);
+        }
+      });
+  };
+
+  const getTransection = () => {
+    const config = {
+      headers: {
+        Authorization: localStorage.getItem("token"),
+      },
+    };
+    axios
+      .get(
+        `${BASE_URL}/admin/pointToMoney/getByTeacherId?teacherId=${params.teacherId}&page=0&size=100`,
+        config
+      )
+      .then((res) => {
+        if (res.data.code === 0) {
+          setTransections(res.data.object.studentPaymentPointResponseList);
         }
       });
   };
@@ -56,6 +75,9 @@ export default function TeacherDetail() {
 
   useEffect(() => {
     getTeacher();
+    if (params.detail === "detail") {
+      getTransection();
+    }
   }, []);
   return !teacher ? (
     <Loading />
@@ -113,7 +135,7 @@ export default function TeacherDetail() {
         </div>
         <div className="bottom">
           <h1 className="title">Lịch sử thanh toán</h1>
-          <ListTransaction />
+          <ListTransaction rows={transections} />
         </div>
       </div>
     </div>

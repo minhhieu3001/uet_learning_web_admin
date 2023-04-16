@@ -8,49 +8,49 @@ import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { Button, Form, Image, Input } from "antd";
 
 export default function QuestionDetail() {
-  const dummyDetail = {
-    id: "1",
-    content:
-      "Câu hỏi thứ nhấtCâu hỏi thứ nhấtCâu hỏi thứ nhấtCâu hỏi thứ nhấtCâu hỏi thứ nhấtCâu hỏi thứ nhấtCâu hỏi thứ nhấtCâu hỏi thứ nhấtCâu hỏi thứ nhấtCâu hỏi thứ nhấtCâu hỏi thứ nhấtCâu hỏi thứ nhấtCâu hỏi thứ nhấtCâu hỏi thứ nhấtCâu hỏi thứ nhất",
-    subject: "Toán",
-    course: "9",
-    file: "https://www.google.com",
-    imgs: [
-      "https://genk.mediacdn.vn/2018/9/14/vegeta-1536891801159352673517.jpg",
-      "https://genk.mediacdn.vn/2018/9/14/vegeta-1536891801159352673517.jpg",
-      "https://genk.mediacdn.vn/2018/9/14/vegeta-1536891801159352673517.jpg",
-    ],
-  };
   const navigate = useNavigate();
   const { questionId } = useParams();
+
   const [question, setQuestion] = useState({});
+
   const getQuestionDetail = async (id) => {
     try {
-      const res = await axios.get(`${BASE_URL}/admin/questions/${id}`, {
-        headers: { Authorization: localStorage.getItem("token") },
-      });
+      const res = await axios.get(
+        `${BASE_URL}/admin/question/getQuestionById?questionId=${questionId}`,
+        {
+          headers: { Authorization: localStorage.getItem("token") },
+        }
+      );
       setQuestion(res?.data?.object);
     } catch (error) {
       console.log(error);
     }
   };
-  const handleOnAcceptRequest = (body) => {
+  const handleOnAcceptRequest = () => {
+    const data = {
+      questionId: questionId,
+      approve: true,
+    };
     return axios
-      .post(`${BASE_URL}/`, body, {
+      .put(`${BASE_URL}/admin/question/approveQuestion`, data, {
         headers: { Authorization: localStorage.getItem("token") },
       })
-      .then(() => navigate("/requestPayments"));
+      .then(() => navigate("/questions"));
   };
-  const handleOnRejectRequest = (body) => {
+  const handleOnRejectRequest = () => {
+    const data = {
+      questionId: questionId,
+      approve: false,
+    };
     return axios
-      .post(`${BASE_URL}/`, body, {
+      .put(`${BASE_URL}/admin/question/approveQuestion`, data, {
         headers: { Authorization: localStorage.getItem("token") },
       })
-      .then(() => navigate("/requestPayments"));
+      .then(() => navigate("/questions"));
   };
   useEffect(() => {
-    // getQuestionDetail(questionId);
-  }, [questionId]);
+    getQuestionDetail(questionId);
+  }, []);
   return (
     <div>
       <div className="question">
@@ -62,24 +62,24 @@ export default function QuestionDetail() {
             <div className="detailQuestionContent">
               <Form>
                 <Form.Item label="Nội dung" colon={false}>
-                  <div>{dummyDetail.content}</div>
+                  <div>{question.content}</div>
                 </Form.Item>
 
                 <Form.Item label="Môn học" colon={false}>
-                  <div>{dummyDetail.subject}</div>
+                  <div>{question.subject}</div>
                 </Form.Item>
                 <Form.Item label="Lớp" colon={false}>
-                  <div>{dummyDetail.course}</div>
+                  <div>{question.course}</div>
                 </Form.Item>
 
                 <Form.Item label="Tệp đính kèm" colon={false}>
-                  <a href={dummyDetail.file} target="_blank">
-                    {dummyDetail.file}
+                  <a href={question.file} target="_blank">
+                    {!question.file}
                   </a>
                 </Form.Item>
                 <Form.Item label="Ảnh đính kèm" colon={false}>
                   <div className="questionImgs">
-                    {dummyDetail.imgs?.map((img, index) => (
+                    {question.imgs?.map((img, index) => (
                       <Image
                         className="image"
                         key={index}
@@ -92,8 +92,10 @@ export default function QuestionDetail() {
               </Form>
             </div>
             <div className="buttons">
-              <Button type="primary">Phê duyệt</Button>
-              <Button>Từ chối</Button>
+              <Button type="primary" onClick={() => handleOnAcceptRequest()}>
+                Phê duyệt
+              </Button>
+              <Button onClick={() => handleOnRejectRequest()}>Từ chối</Button>
             </div>
           </div>
         </div>
