@@ -199,6 +199,22 @@ export default function TeacherDetail() {
                       : teacher.introduceMySelf}
                   </span>
                 </div>
+                <div style={{ display: "flex" }}>
+                  <div style={{ marginRight: 20 }}>
+                    <div>Ảnh mặt trước căn cước công dân</div>
+                    <img
+                      src={teacher.mtCCCD}
+                      style={{ width: "600px", height: "300px" }}
+                    />
+                  </div>
+                  <div>
+                    <div>Ảnh mặt sau căn cước công dân</div>
+                    <img
+                      src={teacher.msCCCD}
+                      style={{ width: "600px", height: "300px" }}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

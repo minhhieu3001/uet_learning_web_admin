@@ -71,6 +71,12 @@ const Sidebar = () => {
               <span>Duyệt câu hỏi</span>
             </li>
           </Link>
+          <Link to="/reports" style={{ textDecoration: "none" }}>
+            <li>
+              <Check className="icon" />
+              <span>Duyệt báo cáo vi phạm</span>
+            </li>
+          </Link>
         </ul>
       </div>
     </div>

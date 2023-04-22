@@ -6,14 +6,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { handleTime } from "../../util/handleTime";
 
 const ListTransaction = ({ rows }) => {
-  const handleTime = (time) => {
-    const date = new Date(time);
-    return `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}  ${date.getDate()}/${
-      date.getMonth() + 1
-    }/${date.getFullYear()}`;
-  };
   return !rows ? (
     <></>
   ) : (

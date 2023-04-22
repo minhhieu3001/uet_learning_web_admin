@@ -14,6 +14,8 @@ import QuestionDetail from "./pages/question-detail/QuestionDetail";
 import ListRequestPayments from "./pages/request-payment/RequestPayment";
 import RequestPaymentDetail from "./pages/request-payment-detail/RequestPaymentDetail";
 import ListPayment from "./pages/list-payment/ListPayment";
+import ListReport from "./pages/reports/reports";
+import ReportDetail from "./pages/report-detail/ReportDetail";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -49,6 +51,10 @@ function App() {
                 path=":requestPaymentId"
                 element={<RequestPaymentDetail />}
               />
+            </Route>
+            <Route path="reports">
+              <Route index element={<ListReport />} />
+              <Route path=":reportId" element={<ReportDetail />} />
             </Route>
           </Route>
         </Routes>

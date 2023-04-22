@@ -1,13 +1,8 @@
 import { Table } from "antd";
 import React from "react";
+import { handleTime } from "../../util/handleTime";
 
 export default function TablePayments({ rows }) {
-  const handleTime = (time) => {
-    const date = new Date(time);
-    return `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}  ${date.getDate()}/${
-      date.getMonth() + 1
-    }/${date.getFullYear()}`;
-  };
   const columns = [
     {
       title: "Id",
@@ -23,7 +18,7 @@ export default function TablePayments({ rows }) {
       title: "Số tiền",
       dataIndex: "money",
       key: "money",
-      render: (_, record) => <div>{record.money} 000 VNĐ</div>,
+      render: (_, record) => <div>{record.money} VNĐ</div>,
     },
     {
       title: "Thời gian",

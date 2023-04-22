@@ -8,44 +8,48 @@ import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { Button, Form, Image, Input } from "antd";
 
 export default function RequestPaymentDetail() {
-  const dummyDetail = {
-    id: "1",
-    bank: "BIDV",
-    author: "Bui Minh Hieu",
-    points: "10000",
-    bankName: "Bui Minh Hieu",
-    bankNumber: "0999888767",
-  };
   const navigate = useNavigate();
   const { requestPaymentId } = useParams();
-  const [question, setQuestion] = useState({});
-  const getQuestionDetail = async (id) => {
+  const [request, setRequest] = useState({});
+  const getRequestDetail = async () => {
     try {
-      const res = await axios.get(`${BASE_URL}/admin/requestPayment/${id}`, {
-        headers: { Authorization: localStorage.getItem("token") },
-      });
-      setQuestion(res?.data?.object);
+      const res = await axios.get(
+        `${BASE_URL}/admin/pointToMoney/getDetail/${requestPaymentId}`,
+        {
+          headers: { Authorization: localStorage.getItem("token") },
+        }
+      );
+      setRequest(res?.data?.object);
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
   };
-  const handleOnAcceptRequest = (body) => {
+  const handleOnAcceptRequest = () => {
+    const data = {
+      id: requestPaymentId,
+      approve: true,
+    };
     return axios
-      .post(`${BASE_URL}/`, body, {
+      .post(`${BASE_URL}/admin/pointToMoney/approve`, data, {
         headers: { Authorization: localStorage.getItem("token") },
       })
       .then(() => navigate("/requestPayments"));
   };
-  const handleOnRejectRequest = (body) => {
+  const handleOnRejectRequest = () => {
+    const data = {
+      id: requestPaymentId,
+      approve: false,
+    };
     return axios
-      .post(`${BASE_URL}/`, body, {
+      .post(`${BASE_URL}/admin/pointToMoney/approve`, data, {
         headers: { Authorization: localStorage.getItem("token") },
       })
       .then(() => navigate("/requestPayments"));
   };
   useEffect(() => {
-    // getQuestionDetail(questionId);
-  }, [requestPaymentId]);
+    getRequestDetail();
+  }, []);
   return (
     <div>
       <div className="request">
@@ -63,19 +67,22 @@ export default function RequestPaymentDetail() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
-                  }}>
+                  }}
+                >
                   <Form.Item
                     style={{ width: "40%" }}
                     label="Giáo viên"
-                    colon={false}>
-                    <div>{dummyDetail.author}</div>
+                    colon={false}
+                  >
+                    <div>{request.fullName}</div>
                   </Form.Item>
 
                   <Form.Item
                     style={{ width: "40%" }}
                     label="Ngân hàng"
-                    colon={false}>
-                    <div>{dummyDetail.bank}</div>
+                    colon={false}
+                  >
+                    <div>{request.bank}</div>
                   </Form.Item>
                 </div>
                 <div
@@ -83,18 +90,21 @@ export default function RequestPaymentDetail() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
-                  }}>
+                  }}
+                >
                   <Form.Item
                     style={{ width: "40%" }}
                     label="STK Ngân hàng"
-                    colon={false}>
-                    <div>{dummyDetail.bankNumber}</div>
+                    colon={false}
+                  >
+                    <div>{request.bankId}</div>
                   </Form.Item>
                   <Form.Item
                     style={{ width: "40%" }}
                     label="Tên chủ STK"
-                    colon={false}>
-                    <div>{dummyDetail.bankName}</div>
+                    colon={false}
+                  >
+                    <div>{request.fullName}</div>
                   </Form.Item>
                 </div>
                 <div
@@ -102,25 +112,30 @@ export default function RequestPaymentDetail() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
-                  }}>
+                  }}
+                >
                   <Form.Item
                     style={{ width: "40%" }}
                     label="Số points quy đổi"
-                    colon={false}>
-                    <div>{dummyDetail.points}</div>
+                    colon={false}
+                  >
+                    <div>{request.point}</div>
                   </Form.Item>
                   <Form.Item
                     style={{ width: "40%" }}
                     label="Thành tiền"
-                    colon={false}>
-                    <div>{`${dummyDetail.points}0 VND`}</div>
+                    colon={false}
+                  >
+                    <div>{`${request.money}0 VND`}</div>
                   </Form.Item>
                 </div>
               </Form>
             </div>
             <div className="buttons">
-              <Button type="primary">Phê duyệt</Button>
-              <Button>Từ chối</Button>
+              <Button type="primary" onClick={() => handleOnAcceptRequest()}>
+                Phê duyệt
+              </Button>
+              <Button onClick={() => handleOnRejectRequest()}>Từ chối</Button>
             </div>
           </div>
         </div>

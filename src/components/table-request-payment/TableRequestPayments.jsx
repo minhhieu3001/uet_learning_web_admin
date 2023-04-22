@@ -20,8 +20,8 @@ export default function TableRequestPayments({ data, loading }) {
     },
     {
       title: "Giáo viên",
-      dataIndex: "author",
-      key: "author",
+      dataIndex: "fullName",
+      key: "fullName",
       width: 240,
       align: "center",
     },
@@ -31,7 +31,7 @@ export default function TableRequestPayments({ data, loading }) {
       key: "money",
       width: 120,
       align: "center",
-      render: (_, record) => <div>{`${record.points}0 VND`}</div>,
+      render: (_, record) => <div>{`${record.point}0 VND`}</div>,
     },
     {
       title: "Hành động",

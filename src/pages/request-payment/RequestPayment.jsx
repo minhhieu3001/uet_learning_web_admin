@@ -17,7 +17,7 @@ export default function ListRequestPayments() {
         `${BASE_URL}/admin/pointToMoney/getAll?page=0&size=100&approve=false`,
         { headers: { Authorization: localStorage.getItem("token") } }
       );
-      setRequests(res?.data?.object.contents);
+      setRequests(res?.data?.object.content);
       setLoading(false);
       console.log(res);
     } catch (error) {
