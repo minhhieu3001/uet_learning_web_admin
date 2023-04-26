@@ -16,13 +16,13 @@ export default function TableRequestPayments({ data, loading }) {
       title: "Ngân hàng",
       dataIndex: "bank",
       key: "bank",
+      width: 300,
       align: "center",
     },
     {
       title: "Giáo viên",
       dataIndex: "fullName",
       key: "fullName",
-      width: 240,
       align: "center",
     },
     {
