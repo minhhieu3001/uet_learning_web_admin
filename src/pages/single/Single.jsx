@@ -9,7 +9,11 @@ import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading";
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
-
+import {
+  handleOnDeactiveStudentAccount,
+  handleOnDeactiveTeacherAccount,
+} from "../../util/helpers";
+import { message } from "antd";
 const Single = () => {
   const params = useParams();
   const [user, setUser] = useState(null);
@@ -66,7 +70,12 @@ const Single = () => {
         <div className="top">
           <div className="left">
             <div className="editButton">Chỉnh sửa</div>
-            <div className="deactiveButton">Vô hiệu hóa</div>
+            <div
+              className="deactiveButton"
+              onClick={() => handleOnDeactiveStudentAccount(params.userId)}
+            >
+              Vô hiệu hóa
+            </div>
             <h1 className="title">Thông tin cá nhân</h1>
             <div className="item">
               {user.avaPath ? (

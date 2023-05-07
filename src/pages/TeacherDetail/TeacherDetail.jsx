@@ -7,8 +7,9 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import ListTransaction from "../../components/ListTransaction/Table";
 import { UserOutlined } from "@ant-design/icons";
-import { Avatar } from "antd";
+import { Avatar, message } from "antd";
 import { useNavigate } from "react-router-dom";
+import { handleOnDeactiveTeacherAccount } from "../../util/helpers";
 
 export default function TeacherDetail() {
   const params = useParams();
@@ -89,7 +90,17 @@ export default function TeacherDetail() {
         <div className="top">
           <div className="left">
             <div className="editButton">Chỉnh sửa</div>
-            <div className="deactiveButton">Vô hiệu hóa</div>
+            <div
+              className="deactiveButton"
+              onClick={() =>
+                handleOnDeactiveTeacherAccount(params.teacherId).then(() => {
+                  message.success("Vô hiệu hóa tài khoản thành công");
+                  window.location.replace("/teachers");
+                })
+              }
+            >
+              Vô hiệu hóa
+            </div>
             <h1 className="title">Thông tin cá nhân</h1>
             <div className="item">
               {teacher.avaPath ? (

@@ -2,6 +2,7 @@ import React from "react";
 import { Table, Space, Tag } from "antd";
 import { Link } from "react-router-dom";
 import "./tableTeachers.scss";
+import { handleOnDeactiveTeacherAccount } from "../../util/helpers";
 
 export default function TableTeachers({ teachers, loading }) {
   const columns = [
@@ -70,7 +71,12 @@ export default function TableTeachers({ teachers, loading }) {
           >
             <div className="viewButton">Chi tiết</div>
           </Link>
-          <a style={{ color: "red" }}>Vô hiệu hóa</a>
+          <div
+            style={{ color: "red", cursor: "pointer" }}
+            onClick={() => handleOnDeactiveTeacherAccount(record.id)}
+          >
+            Vô hiệu hóa
+          </div>
         </Space>
       ),
     },
